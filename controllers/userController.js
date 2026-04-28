@@ -13,7 +13,10 @@ const shouldIncludeTask = (req) => req.query.includeTask === "true";
 
 exports.list = (req, res, next) => {
   try {
-    const users = userService.list();
+    const users = userService.list().map((user) => ({
+      ...user,
+      tasks: taskService.findByUserId(user.id),
+    }));
     res.json({ data: users });
   } catch (err) {
     next(err);
