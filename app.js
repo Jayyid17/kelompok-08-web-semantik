@@ -7,7 +7,10 @@ const { notFound } = require("./middlewares/notFound");
 const { errorHandler } = require("./middlewares/errorHandler");
 const app = express();
 
+// memanggil cors tanpa app.use tidak memasang middleware ke Express.
+//cors();
 
+// CONTOH BENAR: cors dipasang sebagai middleware Express.
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));

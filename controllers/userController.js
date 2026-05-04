@@ -45,10 +45,10 @@ exports.create = (req, res, next) => {
     const name = parseName(req.body.name);
     const email = parseEmail(req.body.email);
 
-    if (!name) throw new AppError(400, "name wajib diisi");
+    if (!name) throw new AppError(400, "name dan email wajib diisi");
     if (name.length > 120)
       throw new AppError(400, "name maksimal 120 karakter");
-    if (!email) throw new AppError(400, "email wajib diisi");
+    if (!email) throw new AppError(400, "name dan email wajib diisi");
     if (!validateEmail(email)) throw new AppError(400, "email tidak valid");
     if (userService.findByEmail(email))
       throw new AppError(409, "email sudah digunakan");
